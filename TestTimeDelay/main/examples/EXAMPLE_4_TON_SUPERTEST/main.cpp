@@ -66,6 +66,10 @@ extern "C" void app_main(void)
 
 
 
+   //Ausgang setzen
+    gpio_set_livel(GPIO_Q1, I1 and I2 and I3);
+
+
     TON TON1;
     TON TON2;
     TON TON3;
