@@ -65,7 +65,7 @@ extern "C" void app_main(void)
         // Eingang lesen, das not wird gebraucht weil die Eingaenge bei losgelassenem Taster auf 3.3V sind, und der Taster auf GND schaltet.
         bool I1 = not gpio_get_level(BUTTON_I1);
         bool I2 = not gpio_get_level(BUTTON_I2);
-        bool I2 = not gpio_get_level(BUTTON_I3);
+        bool I3 = not gpio_get_level(BUTTON_I3);
 
         TOGGLE1.RST = I3;
         TOGGLE1(I1);
