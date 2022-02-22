@@ -46,7 +46,7 @@ extern "C" void app_main(void)
 
 
     TOF TOF1;
-    TOF1.PT = 1000;
+    TOF1.PT = 9000;
 
     while (true) // Endlos-Schleife
     {

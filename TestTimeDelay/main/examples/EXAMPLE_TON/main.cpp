@@ -60,7 +60,7 @@ extern "C" void app_main(void)
         gpio_set_level(GPIO_Q1, TON1.Q);
 
         // 100ms warten  = Intervallzeit des Tasks
-        vTaskDelay(100 / portTICK_PERIOD_MS); // 100ms cycle for Test.
+        vTaskDelay(100 / portTICK_PERIOD_MS); // 500ms cycle for Test.
     }
 }
 
