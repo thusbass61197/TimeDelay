@@ -12,6 +12,7 @@
 #include "driver/gpio.h"
 #include "sdkconfig.h"
 #include "StandardLib.h"
+#include "BasicLib.h"
 
 #define LOG_LOCAL_LEVEL ESP_LOG_INFO
 #include "esp_log.h"
@@ -48,6 +49,31 @@ extern "C" void app_main(void)
     TON TON1;
     TON1.PT = 1000;
 
+    TOGGLE TOGGLE1;
+    TOGGLE TOGGLE2;
+
+    while (true) // Endlos-Schleife
+    {
+        // Eingang lesen, das not wird gebraucht weil die Eingaenge bei losgelassenem Taster auf 3.3V sind, und der Taster auf GND schaltet.
+        bool I1 = not gpio_get_level(BUTTON_I1);
+        bool I2 = not gpio_get_level(BUTTON_I2);
+
+
+        TOGGLE1.RST = I3;
+        TOGGLE1(I1);
+
+        TOGGLE2.RST = I3;
+        TOGGLE2(I2);
+
+
+
+        // Ausgaenge setzen
+        gpio_set_level(GPIO_Q1, TOGGLE1.Q);
+
+        // 100ms warten  = Intervallzeit des Tasks
+        vTaskDelay(100 / portTICK_PERIOD_MS); // 100ms cycle for Test.
+    }
+}
     while (true) // Endlos-Schleife
     {
         // Eingang lesen, das not wird gebraucht weil die Eingaenge bei losgelassenem Taster auf 3.3V sind, und der Taster auf GND schaltet.
@@ -62,5 +88,5 @@ extern "C" void app_main(void)
         // 100ms warten  = Intervallzeit des Tasks
         vTaskDelay(100 / portTICK_PERIOD_MS); // 500ms cycle for Test.
     }
-}
+
 

@@ -21,11 +21,9 @@ static const char * const TAG = "EXAMPLE_TOGGLE";
 
 #define BUTTON_I1 GPIO_NUM_26        // Pin 26.
 #define BUTTON_I2 GPIO_NUM_32        // Pin 32.
-#define BUTTON_I3 GPIO_NUM_39        // Pin 39.
+       // Pin 39.
 #define GPIO_Q1 GPIO_NUM_19          // Pin 19.
-#define GPIO_Q2 GPIO_NUM_23
-#define GPIO_Q3 GPIO_NUM_33
-#define GPIO_Q4 GPIO_NUM_25
+
 
 
 
@@ -44,16 +42,16 @@ extern "C" void app_main(void)
        functions.)
     */
     gpio_reset_pin(GPIO_Q1);
-    gpio_reset_pin(GPIO_Q2);
+
     gpio_reset_pin(BUTTON_I1);
     gpio_reset_pin(BUTTON_I2);
-    gpio_reset_pin(BUTTON_I3);
+
     /* Set the GPIO as a push/pull output */
     gpio_set_direction(GPIO_Q1, GPIO_MODE_OUTPUT);
-    gpio_set_direction(GPIO_Q2, GPIO_MODE_OUTPUT);
+
     gpio_set_direction(BUTTON_I1, GPIO_MODE_INPUT);
     gpio_set_direction(BUTTON_I2, GPIO_MODE_INPUT);
-    gpio_set_direction(BUTTON_I3, GPIO_MODE_INPUT);
+
     gpio_set_level(GPIO_Q1, 0); //set to 0 at Reset.
     gpio_set_level(GPIO_Q2, 0); //set to 0 at Reset.
 
@@ -65,7 +63,7 @@ extern "C" void app_main(void)
         // Eingang lesen, das not wird gebraucht weil die Eingaenge bei losgelassenem Taster auf 3.3V sind, und der Taster auf GND schaltet.
         bool I1 = not gpio_get_level(BUTTON_I1);
         bool I2 = not gpio_get_level(BUTTON_I2);
-        bool I3 = not gpio_get_level(BUTTON_I3);
+
 
         TOGGLE1.RST = I3;
         TOGGLE1(I1);
@@ -77,9 +75,10 @@ extern "C" void app_main(void)
 
         // Ausgaenge setzen
         gpio_set_level(GPIO_Q1, TOGGLE1.Q);
-        gpio_set_level(GPIO_Q2, TOGGLE2.Q);
+
         // 100ms warten  = Intervallzeit des Tasks
         vTaskDelay(100 / portTICK_PERIOD_MS); // 100ms cycle for Test.
     }
 }
+
 
